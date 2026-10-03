@@ -250,10 +250,15 @@ function checkAnswer(data, sources) {
   );
   // Quoted source lines may themselves contain bracketed text; they are evidence,
   // not citations made by the answer. Actual answer citations remain strict.
-  const prose = data.answer
-    .split("\n")
-    .filter((line) => !/^\s*>/.test(line))
-    .join("\n");
+  const lines = data.answer.split("\n");
+  for (const line of lines.filter((line) => /^\s*>/.test(line))) {
+    const quotation = line.replace(/^\s*> ?/, "");
+    assert(
+      sources.some((source) => source.text.includes(quotation)),
+      "回答中的原文引句与资料不符，请重试。",
+    );
+  }
+  const prose = lines.filter((line) => !/^\s*>/.test(line)).join("\n");
   const mentioned = [...prose.matchAll(/\[([^\]\r\n]+)\]/gu)].map(
     (match) => match[1],
   );

@@ -279,6 +279,26 @@ test("input limits, duplicate IDs, binary content and nontext documents are reje
   );
 });
 
+test("invented source quotations cannot conceal fake reference IDs", async () => {
+  await assert.rejects(
+    run(
+      { question: "部署 Node 版本", documents },
+      {
+        generate: async (spec) => {
+          const id = JSON.parse(spec.input).sources[0].id;
+          return {
+            data: {
+              answer: `> 编造的原文 [S-fake]\n[${id}]`,
+              citations: [id],
+            },
+          };
+        },
+      },
+    ),
+    /原文引句/,
+  );
+});
+
 test("retrieval never exceeds six sources and rejects invalid options", () => {
   const docs = Array.from({ length: 10 }, (_, index) => ({
     id: String(index),
