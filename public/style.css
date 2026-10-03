@@ -623,3 +623,5 @@ form > .grid3 {
 #documents {
   margin-top: 18px;
 }
+.source-text { white-space: pre-wrap; }
+.card:target { outline: 2px solid var(--accent); outline-offset: 3px; }

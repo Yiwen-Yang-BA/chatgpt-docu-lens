@@ -127,13 +127,20 @@ $("#question-form").onsubmit = async (e) => {
   try {
     const r = await run({ question, documents: docs });
     history.push({ question, ...r.data, mode: r.meta.mode });
+    let answerHtml = markdown(r.data.answer);
+    for (const source of r.data.sources) {
+      answerHtml = answerHtml.replaceAll(
+        `[${source.id}]`,
+        `<a href="#source-${escape(source.id)}">[${escape(source.id)}]</a>`,
+      );
+    }
     $("#answer").innerHTML =
-      `<div class="meta">${resultMeta(r.meta)}</div>${markdown(r.data.answer)}`;
+      `<div class="meta">${resultMeta(r.meta)}</div>${answerHtml}`;
     $("#sources").innerHTML = r.data.sources.length
       ? r.data.sources
           .map(
             (s) =>
-              `<article class="card"><div class="row between"><span class="pill">${escape(s.id)}</span><strong>${escape(s.name)}</strong></div><p class="hint">原文字符 ${s.start}–${s.end}</p><p>${escape(s.text)}</p></article>`,
+              `<article id="source-${escape(s.id)}" class="card"><div class="row between"><span class="pill">${escape(s.id)}</span><strong>${escape(s.name)}</strong></div><p class="hint">原文字符 ${s.start}–${s.end}</p><p class="source-text">${escape(s.text)}</p></article>`,
           )
           .join("")
       : '<p class="muted">没有匹配片段。尝试使用资料中出现的具体词语。</p>';
