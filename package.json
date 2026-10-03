@@ -1,0 +1,17 @@
+{
+  "name": "chatgpt-docu-lens",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "把零散资料变成可追溯的问答。导入文档，提出问题，沿着引用找到答案的来处。",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "dev": "node --watch --env-file-if-exists=.env server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check server.mjs && node --check project.mjs && node --check public/app.js"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="把零散资料变成可追溯的问答。导入文档，提出问题，沿着引用找到答案的来处。"
+    />
+    <title>Docu Lens · AI 小工具</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand"><span class="logo">D</span>Docu Lens</div>
+        <div class="side-intro">
+          <div class="eyebrow">PERSONAL AI WORKSPACE</div>
+          <div class="nav-item">文档问答</div>
+        </div>
+        <div class="side-note">
+          把一个想法，变成可以使用的结果。<br />轻量、专注，按你的节奏。
+        </div>
+        <div class="side-bottom">
+          <div class="eyebrow">CONNECTION</div>
+          <label
+            ><span class="sr-only" hidden>运行模式</span
+            ><select id="mode" aria-label="运行模式"></select
+          ></label>
+        </div>
+        <div class="side-footer">
+          INDEPENDENT EDITION / 03<br />Built for a little more clarity.
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <span class="crumb">我的工作台 &nbsp; / &nbsp; 文档问答</span
+          ><span class="top-meta"
+            ><i class="dot"></i><span id="connection">正在连接…</span></span
+          >
+        </header>
+        <section class="hero">
+          <div class="eyebrow">ANSWERS WITH SOMETHING TO POINT TO</div>
+          <h1>让答案，回到原文。</h1>
+          <p class="description">
+            把零散资料变成可追溯的问答。导入文档，提出问题，沿着引用找到答案的来处。
+          </p>
+        </section>
+        <section class="workspace">
+          <section class="panel">
+            <div class="panel-head">
+              <h2>资料库</h2>
+              <button id="sample" class="small">载入示例</button>
+            </div>
+            <label class="file-drop"
+              >＋ 添加 TXT / Markdown<input
+                type="file"
+                id="files"
+                accept=".txt,.md,.markdown,text/plain,text/markdown"
+                multiple
+            /></label>
+            <div id="documents" class="stack"></div>
+            <details>
+              <summary>或粘贴一份新文档</summary>
+              <form id="add-form" class="stack">
+                <label
+                  >文档名称<input
+                    id="doc-name"
+                    maxlength="100"
+                    required
+                    placeholder="产品手册" /></label
+                ><label
+                  >文档内容<textarea
+                    id="doc-text"
+                    rows="6"
+                    maxlength="120000"
+                    required
+                  ></textarea></label
+                ><button class="small" type="submit">加入资料库</button>
+              </form>
+            </details>
+            <p id="doc-stats" class="hint"></p>
+          </section>
+          <section class="panel">
+            <div class="panel-head">
+              <h2>向资料提问</h2>
+              <span class="number">ASK YOUR SOURCES</span>
+            </div>
+            <form id="question-form">
+              <label
+                >你的问题<textarea
+                  id="question"
+                  rows="4"
+                  maxlength="1500"
+                  required
+                  placeholder="例如：这个产品如何保障数据隐私？"
+                ></textarea>
+              </label>
+              <div class="toolbar">
+                <button id="ask" class="primary">查找答案 ↗</button
+                ><button type="button" id="export" class="small">
+                  导出问答
+                </button>
+              </div>
+            </form>
+            <div class="divider"></div>
+            <div id="answer" class="result">
+              <div class="empty">
+                <div class="symbol">⌕</div>
+                <h3>每个回答，都有出处</h3>
+                <p>
+                  先添加文档，再提出一个具体问题。演示模式直接摘录相关原文。
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="panel full">
+            <div class="panel-head">
+              <h2>原文证据</h2>
+              <span class="number">SOURCE EXCERPTS</span>
+            </div>
+            <div id="sources" class="grid2">
+              <p class="muted">回答关联的原始片段会显示在这里。</p>
+            </div>
+          </section>
+        </section>
+        <footer class="footer">
+          <span>Docu Lens · 独立轻量实现</span
+          ><span
+            >灵感来自
+            <a
+              href="https://github.com/arc53/DocsGPT"
+              target="_blank"
+              rel="noopener noreferrer"
+              >arc53/DocsGPT</a
+            >
+            &nbsp; / &nbsp; 03 OF 10</span
+          >
+        </footer>
+      </main>
+    </div>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

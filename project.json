@@ -1,0 +1,32 @@
+{
+  "id": "chatgpt-docu-lens",
+  "title": "Docu Lens",
+  "number": 3,
+  "port": 3103,
+  "symbol": "D",
+  "nav": "文档问答",
+  "eyebrow": "ANSWERS WITH SOMETHING TO POINT TO",
+  "headline": "让答案，回到原文。",
+  "description": "把零散资料变成可追溯的问答。导入文档，提出问题，沿着引用找到答案的来处。",
+  "features": [
+    "导入 TXT / Markdown，或直接粘贴文档",
+    "中文与英文关键词检索、重叠分块和原文位置",
+    "基于检索片段回答，返回可核对的引用",
+    "浏览器文档库、问答记录与 Markdown 导出"
+  ],
+  "steps": [
+    "导入最多 12 份 TXT / Markdown，或填写名称并粘贴文本。",
+    "针对资料提问；先进行本地检索，再把相关片段交给模型。",
+    "核对右侧来源卡片里的文件名、字符位置和原文。",
+    "导出问答为 Markdown。无关问题会说明没有匹配资料。"
+  ],
+  "source": {
+    "name": "arc53/DocsGPT",
+    "url": "https://github.com/arc53/DocsGPT",
+    "stars": 18306,
+    "pushed": "2026-10-03",
+    "license": "MIT"
+  },
+  "scope": "复刻 DocsGPT 的导入→检索→引用问答路径。使用本地关键词检索，不使用向量数据库；不解析 PDF/图片，不支持 OCR、爬虫或云端知识库。中文单字/双字检索与英文词匹配不保证识别所有同义表达。",
+  "storage": "文档保存在当前浏览器本地存储。支持最多 12 份文档，单份 12 万字符、总计 24 万字符。"
+}
